@@ -1,0 +1,100 @@
+{
+  "name": "stock-management-desktop",
+  "version": "1.0.0",
+  "description": "ස්ටොක් කළමනාකරණ Desktop යෙදුම - Stock Management Desktop Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "dist": "electron-builder --publish=never",
+    "pack": "electron-builder --dir",
+    "clean": "rimraf dist build",
+    "prebuild": "npm run clean",
+    "build:optimized": "node build-optimized.js",
+    "build:prod": "npm run clean && npm run build:optimized"
+  },
+  "keywords": [
+    "stock",
+    "inventory",
+    "management",
+    "සිංහල",
+    "desktop"
+  ],
+  "author": "Stock Management Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^38.3.0",
+    "electron-builder": "^24.13.3",
+    "rimraf": "^5.0.10"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.7"
+  },
+  "build": {
+    "appId": "com.stockmanagement.sinhala",
+    "productName": "ස්ටොක් කළමනාකරණ පද්ධතිය",
+    "copyright": "Copyright © 2024 Stock Management Team",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "**/*",
+      "!node_modules",
+      "!dist",
+      "!build",
+      "!*.log",
+      "!test-loader.html",
+      "!test-security.html",
+      "!*.md",
+      "!docs/**/*",
+      "!assets/css/components/const dashboard = {.txt"
+    ],
+    "win": {
+      "target": {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      },
+      "icon": "build/icon.ico",
+      "publisherName": "Stock Management Team",
+      "compression": "maximum"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ස්ටොක් කළමනාකරණය"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns",
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "Office"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "YOUR_GITHUB_OWNER",
+        "repo": "YOUR_REPO_NAME"
+      }
+    ]
+  }
+}
